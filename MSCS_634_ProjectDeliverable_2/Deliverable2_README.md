@@ -35,7 +35,7 @@ The cleaned dataset produced in Deliverable 1 (`online_shoppers_cleaned.csv`) wa
 
 ## Feature Engineering
 
-New features were created to capture behavior patterns not directly present in the raw columns. None of the engineered features were built using `ProductRelated_Duration` itself, to avoid leaking the target into the predictors.
+Five new behavioral features were created without using the regression target:
 
 | Engineered Feature | Description |
 |---|---|
@@ -45,18 +45,26 @@ New features were created to capture behavior patterns not directly present in t
 | BounceExitRatio | Ratio of BounceRates to ExitRates |
 | Engagement_Score | ProductRelated page count multiplied by PageValues |
 
-`Month` and `VisitorType` were one-hot encoded, and `Weekend` was converted to an integer. `Revenue` was excluded from the feature set entirely to keep this deliverable independent of the Deliverable 3 classification target.
+`Month`, `VisitorType`, `OperatingSystems`, `Browser`, `Region`, and `TrafficType` were one-hot encoded. The coded numerical columns were treated as categories rather than continuous measurements.
+
+`Weekend` and `Revenue` were converted to integers. Revenue was excluded from the regression predictors because it will be used as the classification target in Deliverable 3.
+
+Redundant component variables were removed after creating `Total_Pages` and `NonProduct_Duration`. The final model used 68 predictor features.
 
 ## Modeling Approach
 
-Data was split into training (80%) and test (20%) sets, and features were standardized with `StandardScaler` fit only on the training data. Four regression models were built and compared:
+The data was split into an 80% training set and a 20% test set using a random state of 42. This produced 9,764 training records and 2,441 test records.
 
-1. **Linear Regression** – baseline model with no regularization
-2. **Ridge Regression** – L2-regularized linear model
-3. **Lasso Regression** – L1-regularized linear model
-4. **Random Forest Regressor** – non-linear ensemble model, included as a benchmark
+For held-out test evaluation, `StandardScaler` was fitted only on the training data. During five-fold cross-validation, scaling was performed inside model pipelines so that preprocessing was repeated independently within every fold.
 
-Each model was evaluated on the held-out test set using R-squared, MSE, and RMSE, and then re-evaluated with 5-fold cross-validation on the training data to check generalization.
+Four regression models were compared:
+
+1. **Linear Regression**
+2. **Ridge Regression**
+3. **Lasso Regression**
+4. **Random Forest Regressor**
+
+Each model was evaluated using R-squared, Mean Squared Error, Root Mean Squared Error, and five-fold cross-validation.
 
 ## Model Performance
 
@@ -64,36 +72,46 @@ Each model was evaluated on the held-out test set using R-squared, MSE, and RMSE
 
 | Model | R-squared | MSE | RMSE |
 |---|---:|---:|---:|
-| Linear Regression | 0.7188 | 693,011.65 | 832.47 |
-| Ridge Regression | 0.7188 | 693,007.47 | 832.47 |
-| Lasso Regression | 0.7188 | 693,002.75 | 832.47 |
-| Random Forest | 0.7499 | 616,435.41 | 785.13 |
+| Linear Regression | 0.7188 | 692,990.14 | 832.46 |
+| Ridge Regression | 0.7188 | 693,176.22 | 832.57 |
+| Lasso Regression | 0.7190 | 692,592.87 | 832.22 |
+| Random Forest | 0.7506 | 614,684.76 | 784.02 |
 
-### 5-Fold Cross-Validation Results (Training Data)
+### Five-Fold Cross-Validation Results
 
-| Model | CV R-squared (mean) | CV RMSE (mean) |
+| Model | CV R-squared Mean | CV RMSE Mean |
 |---|---:|---:|
-| Linear Regression | 0.7303 | 805.60 |
-| Ridge Regression | 0.7303 | 805.59 |
-| Lasso Regression | 0.7304 | 805.44 |
-| Random Forest | 0.7694 | 744.15 |
+| Linear Regression | 0.7318 | 803.28 |
+| Ridge Regression | 0.7318 | 803.28 |
+| Lasso Regression | 0.7321 | 802.96 |
+| Random Forest | 0.7702 | 742.97 |
 
-Cross-validation results were close to the single train/test split results for every model, indicating the models generalize reasonably well and the initial split was not unusually easy or hard.
+Random Forest produced the highest R-squared and lowest RMSE on both the held-out test set and cross-validation. The cross-validation results were reasonably close to the test-set results, indicating that the models generalized consistently.
 
 ## Key Findings
 
-- The three linear models (Linear Regression, Ridge, Lasso) performed almost identically, all reaching a cross-validated R-squared of roughly **0.73**. This similarity indicates multicollinearity was not severe enough for L1/L2 regularization to meaningfully change the linear fit.
-- The **Random Forest Regressor** outperformed all linear models, reaching a cross-validated R-squared of roughly **0.77** and a lower RMSE of about **744 seconds**, suggesting the relationship between browsing behavior and product-page engagement time is at least partly non-linear.
-- The most influential features for the Random Forest model were **Total_Pages** (0.559) and **ProductRelated** page count (0.312), together accounting for most of the model's predictive power. **ExitRates** (0.025) and the engineered **Avg_NonProduct_Duration_Per_Page** (0.014) contributed smaller but meaningful amounts.
-- Feature engineering added value: the **Engagement_Score** and **BounceExitRatio** interaction features contributed to prediction beyond what the raw columns provided alone.
+- Random Forest was the best-performing model, with a test R-squared of **0.7506** and a cross-validated R-squared of **0.7702**.
+- Random Forest reduced the test RMSE to **784.02 seconds**, compared with approximately **832 seconds** for the linear models.
+- Linear Regression, Ridge Regression, and Lasso Regression performed similarly. The selected regularization settings did not provide a meaningful improvement over ordinary Linear Regression.
+- `Total_Pages` was the most influential Random Forest feature, with an importance of approximately **0.564**.
+- `ProductRelated` page count was the second-most influential feature, with an importance of approximately **0.315**.
+- `ExitRates`, `Avg_NonProduct_Duration_Per_Page`, and `NonProduct_Duration` made smaller contributions.
+- `BounceExitRatio` contributed a small amount, while `Engagement_Score` had limited individual importance in the final Random Forest model.
+- The stronger performance of Random Forest indicates that the relationship between browsing behavior and product-related duration is partly non-linear.
 
 ## Challenges Encountered
 
-One challenge was choosing an appropriate regression target. `PageValues`, the dataset's most business-relevant continuous variable, turned out to be too zero-inflated for regression, so `ProductRelated_Duration` was used instead after checking its distribution.
+One challenge was selecting an appropriate continuous regression target. `PageValues` was zero for approximately 77.6% of sessions, so `ProductRelated_Duration` was selected instead.
 
-Another challenge was avoiding target leakage. Several duration and page-count columns are closely related to `ProductRelated_Duration`, so engineered features such as `NonProduct_Duration` and `Avg_NonProduct_Duration_Per_Page` were deliberately built to exclude the target variable.
+Another challenge was preventing target leakage. Revenue was excluded, and none of the engineered features directly used `ProductRelated_Duration`.
 
-A minor technical challenge was that the default number of iterations for `Lasso` was insufficient on the scaled feature set, producing convergence warnings; increasing `max_iter` to 10,000 resolved this.
+Several columns, including Browser, OperatingSystems, Region, and TrafficType, were stored as numbers even though they represented categories. These columns were converted and one-hot encoded.
+
+Redundant component variables were removed after creating `Total_Pages` and `NonProduct_Duration` to reduce exact feature relationships.
+
+Scaling was placed inside cross-validation pipelines so that preprocessing was fitted separately in every training fold.
+
+Lasso Regression initially produced a convergence warning. Increasing `max_iter` to 10,000 resolved the issue.
 
 ## Repository Files
 

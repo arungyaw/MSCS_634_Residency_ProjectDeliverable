@@ -43,11 +43,12 @@ Each record represents an online shopping session. The dataset includes page vis
 
 ### Deliverable 2: Regression Modeling and Performance Evaluation
 
-- Perform feature engineering
-- Build at least two regression models
-- Evaluate models using R-squared, MSE, and RMSE
-- Apply cross-validation
-- Compare model performance
+- Engineered five behavioral features
+- Encoded categorical variables and removed redundant predictors
+- Built Linear Regression, Ridge Regression, Lasso Regression, and Random Forest models
+- Evaluated the models using R-squared, MSE, and RMSE
+- Applied five-fold cross-validation using preprocessing pipelines
+- Compared model performance and feature importance
 
 **Status:** Completed
 
@@ -74,13 +75,24 @@ Each record represents an online shopping session. The dataset includes page vis
 
 ## Current Key Findings
 
+**Deliverable 1**
+
 - The cleaned dataset contains 12,205 unique sessions.
-- Approximately 15.63% of sessions resulted in a purchase.
+- Only 15.63% of sessions resulted in a purchase, showing that Revenue is imbalanced.
 - PageValues had the strongest positive relationship with Revenue.
-- Purchasing sessions had greater product engagement.
-- Purchasing sessions had lower bounce and exit rates.
+- Purchasing sessions had greater product engagement and lower bounce and exit rates.
 - November had the highest monthly conversion rate.
 - Weekend sessions had a slightly higher conversion rate than weekday sessions.
+
+**Deliverable 2**
+
+- ProductRelated_Duration was selected as the regression target because PageValues was highly zero-inflated.
+- Five engineered behavioral features were created, and the final models used 68 predictor features.
+- Random Forest was the best-performing model.
+- Random Forest achieved a test R-squared of 0.7506 and a test RMSE of 784.02 seconds.
+- Its mean five-fold cross-validation R-squared was 0.7702, with an RMSE of 742.97 seconds.
+- Total_Pages and ProductRelated page count were the two most influential predictors.
+- The stronger Random Forest performance suggests that the relationship between browsing behavior and product-related duration is partly non-linear.
 
 ## Repository Structure
 
@@ -102,3 +114,27 @@ MSCS_634_Project/
 ├── MSCS_634_ProjectDeliverable_3/
 ├── MSCS_634_ProjectDeliverable_4/
 └── README.md
+
+## Required Libraries
+
+```bash
+pip install pandas numpy matplotlib seaborn scikit-learn ipykernel
+```
+
+Additional libraries may be added in later deliverables.
+
+## How to Run
+
+1. Clone or download the repository.
+2. Open the folder for the required deliverable.
+3. Open the Jupyter Notebook in Jupyter Notebook or Visual Studio Code.
+4. Install the required libraries.
+5. Run the notebook cells from top to bottom.
+
+## Future Updates
+
+This README will be updated after Deliverables 3 and 4 to include classification, clustering, association rule mining, final recommendations, ethical considerations, and presentation materials.
+
+## Reference
+
+Sakar, C., & Kastro, Y. (2018). *Online Shoppers Purchasing Intention Dataset* [Data set]. UCI Machine Learning Repository. https://doi.org/10.24432/C5F88Q
