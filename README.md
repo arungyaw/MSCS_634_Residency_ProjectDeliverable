@@ -1,6 +1,6 @@
 # MSCS 634 Advanced Data Mining Project
 
-### Group Members : 
+### Group Members :
 
 Arun Gyawali
 
@@ -23,7 +23,7 @@ The same dataset will be used throughout all project deliverables.
 **Original Records:** 12,330  
 **Original Attributes:** 18  
 **Cleaned Records:** 12,205  
-**Main Target Variable:** Revenue  
+**Main Target Variable:** Revenue
 
 Each record represents an online shopping session. The dataset includes page visits, page durations, bounce rates, exit rates, page values, visitor type, month, weekend status, traffic information, and purchasing outcome.
 
@@ -52,16 +52,19 @@ Each record represents an online shopping session. The dataset includes page vis
 
 **Status:** Completed
 
-### Deliverable 3: Classification, Clustering, and Pattern Mining
+### Deliverable 3
 
-- Build at least two classification models
-- Perform hyperparameter tuning
-- Evaluate models using accuracy, F1 score, confusion matrix, and ROC curve
-- Develop a clustering model
-- Apply association rule mining
-- Explain practical applications of the findings
+- The tuned Random Forest was the best classifier.
+- It achieved an accuracy of **0.8759**, an F1 score of **0.6759**, and a ROC-AUC of **0.9340**.
+- It correctly identified 316 purchasing sessions and missed 66.
+- PageValues and Engagement_Score were the two most influential classification features.
+- K-Means selected three clusters with a silhouette score of **0.4885**.
+- The clusters represented typical browsing, quick-exit, and highly engaged sessions.
+- Highly engaged sessions had a purchase rate of **27.8%**, while quick-exit sessions had a purchase rate of only **0.7%**.
+- Apriori identified **161 frequent itemsets**.
+- The strongest purchase rule combined positive PageValues with low bounce and low exit behavior and achieved a lift of **4.35**.
 
-**Status:** Not started
+**Status:** Completed
 
 ### Deliverable 4: Final Insights and Recommendations
 
@@ -94,9 +97,24 @@ Each record represents an online shopping session. The dataset includes page vis
 - Total_Pages and ProductRelated page count were the two most influential predictors.
 - The stronger Random Forest performance suggests that the relationship between browsing behavior and product-related duration is partly non-linear.
 
+### Deliverable 3: Classification, Clustering, and Pattern Mining
+
+- Logistic Regression and Random Forest classification models were developed to predict Revenue.
+- The Random Forest was tuned using GridSearchCV with stratified cross-validation and F1 score as the optimization metric.
+- The tuned Random Forest was the best classifier, with an accuracy of **0.8759**, an F1 score of **0.6759**, and a ROC-AUC of **0.9340**.
+- It correctly identified **316 purchasing sessions** and missed **66 purchasing sessions**.
+- PageValues and Engagement_Score were the two most influential classification features.
+- K-Means clustering selected a three-cluster solution with a silhouette score of **0.4885**.
+- The clusters represented typical browsing sessions, quick-exit sessions, and highly engaged sessions.
+- Highly engaged sessions had a purchase rate of approximately **27.8%**, while quick-exit sessions had a purchase rate of only **0.7%**.
+- Apriori association rule mining identified **161 frequent itemsets**.
+- The strongest purchase rule combined positive PageValues with low bounce and low exit behavior.
+- This rule had **68.00% confidence** and a lift of approximately **4.35**.
+- The classification, clustering, and association results describe behavioral patterns and should be used as decision-support information rather than proof of causation.
+
 ## Repository Structure
 
-```text
+````text
 MSCS_634_Project/
 │
 ├── MSCS_634_ProjectDeliverable_1/
@@ -112,6 +130,10 @@ MSCS_634_Project/
 │   └── .gitignore
 │
 ├── MSCS_634_ProjectDeliverable_3/
+│   ├── Deliverable_2.ipynb
+│   ├── online_shoppers_cleaned.csv
+│   └── Deliverable2_README.md
+|
 ├── MSCS_634_ProjectDeliverable_4/
 └── README.md
 
@@ -119,7 +141,7 @@ MSCS_634_Project/
 
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn ipykernel
-```
+````
 
 Additional libraries may be added in later deliverables.
 
@@ -133,8 +155,8 @@ Additional libraries may be added in later deliverables.
 
 ## Future Updates
 
-This README will be updated after Deliverables 3 and 4 to include classification, clustering, association rule mining, final recommendations, ethical considerations, and presentation materials.
+This README will be updated after Deliverables 4 to include final recommendations, ethical considerations, and presentation materials.
 
 ## Reference
 
-Sakar, C., & Kastro, Y. (2018). *Online Shoppers Purchasing Intention Dataset* [Data set]. UCI Machine Learning Repository. https://doi.org/10.24432/C5F88Q
+Sakar, C., & Kastro, Y. (2018). _Online Shoppers Purchasing Intention Dataset_ [Data set]. UCI Machine Learning Repository. https://doi.org/10.24432/C5F88Q
