@@ -164,6 +164,9 @@ MSCS_634_Project/
 │   ├── Deliverable_4_Final_Project.ipynb
 │   ├── online_shoppers_cleaned.csv
 │   ├── Deliverable4_README.md
+│   ├── MSCS_634_Final_Report.pptx
+│   ├── MSCS_634_Final_Project.docx
+│   ├── MSCS_634_Video_Presentation.mp4
 └── README.md
 
 ## Required Libraries
