@@ -1,5 +1,15 @@
 # MSCS 634 Advanced Data Mining Project
 
+### Group Members : 
+
+Arun Gyawali
+
+Kashif Ali Syed
+
+Jiwon Jung
+
+Hanuman Sai Chanukya Srinivas Chilamkuri
+
 ## Project Overview
 
 This project applies data mining techniques to the **Online Shoppers Purchasing Intention Dataset**. The goal is to clean and explore the data, develop predictive models, identify customer groups, discover behavioral patterns, and provide practical recommendations.
