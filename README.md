@@ -1,6 +1,6 @@
 # MSCS 634 Advanced Data Mining Project
 
-### Group Members :
+### Group Members : 
 
 Arun Gyawali
 
@@ -23,7 +23,7 @@ The same dataset will be used throughout all project deliverables.
 **Original Records:** 12,330  
 **Original Attributes:** 18  
 **Cleaned Records:** 12,205  
-**Main Target Variable:** Revenue
+**Main Target Variable:** Revenue  
 
 Each record represents an online shopping session. The dataset includes page visits, page durations, bounce rates, exit rates, page values, visitor type, month, weekend status, traffic information, and purchasing outcome.
 
@@ -52,19 +52,16 @@ Each record represents an online shopping session. The dataset includes page vis
 
 **Status:** Completed
 
-### Deliverable 3
+### Deliverable 3: Classification, Clustering, and Pattern Mining
 
-- The tuned Random Forest was the best classifier.
-- It achieved an accuracy of **0.8759**, an F1 score of **0.6759**, and a ROC-AUC of **0.9340**.
-- It correctly identified 316 purchasing sessions and missed 66.
-- PageValues and Engagement_Score were the two most influential classification features.
-- K-Means selected three clusters with a silhouette score of **0.4885**.
-- The clusters represented typical browsing, quick-exit, and highly engaged sessions.
-- Highly engaged sessions had a purchase rate of **27.8%**, while quick-exit sessions had a purchase rate of only **0.7%**.
-- Apriori identified **161 frequent itemsets**.
-- The strongest purchase rule combined positive PageValues with low bounce and low exit behavior and achieved a lift of **4.35**.
+- Build at least two classification models
+- Perform hyperparameter tuning
+- Evaluate models using accuracy, F1 score, confusion matrix, and ROC curve
+- Develop a clustering model
+- Apply association rule mining
+- Explain practical applications of the findings
 
-**Status:** Completed
+**Status:** Not started
 
 ### Deliverable 4: Final Insights and Recommendations
 
@@ -74,7 +71,7 @@ Each record represents an online shopping session. The dataset includes page vis
 - Discuss data privacy, fairness, and possible bias
 - Prepare the final report and presentation
 
-**Status:** Not started
+**Status:** Completed
 
 ## Current Key Findings
 
@@ -99,22 +96,50 @@ Each record represents an online shopping session. The dataset includes page vis
 
 ### Deliverable 3: Classification, Clustering, and Pattern Mining
 
-- Logistic Regression and Random Forest classification models were developed to predict Revenue.
-- The Random Forest was tuned using GridSearchCV with stratified cross-validation and F1 score as the optimization metric.
-- The tuned Random Forest was the best classifier, with an accuracy of **0.8759**, an F1 score of **0.6759**, and a ROC-AUC of **0.9340**.
-- It correctly identified **316 purchasing sessions** and missed **66 purchasing sessions**.
+- Tuned Random Forest was the best classifier.
+- It achieved an accuracy of **0.8759**, an F1 score of **0.6759**, and a ROC-AUC of **0.9340**.
+- It correctly identified 316 purchasing sessions and missed 66.
 - PageValues and Engagement_Score were the two most influential classification features.
-- K-Means clustering selected a three-cluster solution with a silhouette score of **0.4885**.
-- The clusters represented typical browsing sessions, quick-exit sessions, and highly engaged sessions.
-- Highly engaged sessions had a purchase rate of approximately **27.8%**, while quick-exit sessions had a purchase rate of only **0.7%**.
-- Apriori association rule mining identified **161 frequent itemsets**.
-- The strongest purchase rule combined positive PageValues with low bounce and low exit behavior.
-- This rule had **68.00% confidence** and a lift of approximately **4.35**.
-- The classification, clustering, and association results describe behavioral patterns and should be used as decision-support information rather than proof of causation.
+- K-Means selected three clusters with a silhouette score of **0.4885**.
+- Highly engaged sessions had a purchase rate of **27.8%**, while quick-exit sessions had a purchase rate of **0.7%**.
+- Apriori identified **161 frequent itemsets**.
+- The strongest purchase rule combined positive PageValues with low bounce and low exit rates and achieved **68.00% confidence** and a lift of **4.35**.
+
+### Deliverable 4: Final Integrated Findings
+
+- PageValues was the most consistent purchase-intent signal across EDA, classification, and association rule mining.
+- Browsing depth and product-page count were the strongest predictors of product-related duration.
+- Random Forest outperforming the linear baselines showed that shopping behavior contained non-linear relationships.
+- Low bounce and exit rates were consistently associated with purchasing behavior.
+- Behavioral segmentation separated typical, quick-exit, and highly engaged sessions.
+- The findings support marketing prioritization, website improvement, customer segmentation, and seasonal planning.
+- All models and rules should be treated as decision-support tools rather than causal or guaranteed predictions.
+
+## Practical Recommendations
+
+- Prioritize high-intent sessions when the required behavioral features are available.
+- Improve navigation and product discovery for quick-exit sessions.
+- Support highly engaged sessions with recommendations, comparison tools, and carefully timed offers.
+- Use positive PageValues with low bounce and exit behavior as a high-intent pattern.
+- Use seasonal findings to support campaign and inventory planning.
+- Monitor model performance, fairness, and customer behavior over time.
+
+## Ethical Considerations
+
+The project considers:
+
+- Data privacy and session-level information protection
+- Fairness across visitor groups
+- Potential proxy bias in region, browser, operating system, and traffic attributes
+- Unequal effects of false positives and false negatives
+- Transparency about probabilistic predictions
+- The difference between association and causation
+- Responsible rather than manipulative personalization
+- Secure data retention and access controls
 
 ## Repository Structure
 
-````text
+```text
 MSCS_634_Project/
 │
 ├── MSCS_634_ProjectDeliverable_1/
@@ -130,18 +155,21 @@ MSCS_634_Project/
 │   └── .gitignore
 │
 ├── MSCS_634_ProjectDeliverable_3/
-│   ├── Deliverable_2.ipynb
+│   ├── Deliverable_3.ipynb
 │   ├── online_shoppers_cleaned.csv
-│   └── Deliverable2_README.md
+│   └── Deliverable3_README.md
 |
 ├── MSCS_634_ProjectDeliverable_4/
+│   ├── Deliverable_4_Final_Project.ipynb
+│   ├── online_shoppers_cleaned.csv
+│   ├── Deliverable4_README.md
 └── README.md
 
 ## Required Libraries
 
 ```bash
 pip install pandas numpy matplotlib seaborn scikit-learn ipykernel
-````
+```
 
 Additional libraries may be added in later deliverables.
 
@@ -153,10 +181,6 @@ Additional libraries may be added in later deliverables.
 4. Install the required libraries.
 5. Run the notebook cells from top to bottom.
 
-## Future Updates
-
-This README will be updated after Deliverables 4 to include final recommendations, ethical considerations, and presentation materials.
-
 ## Reference
 
-Sakar, C., & Kastro, Y. (2018). _Online Shoppers Purchasing Intention Dataset_ [Data set]. UCI Machine Learning Repository. https://doi.org/10.24432/C5F88Q
+Sakar, C., & Kastro, Y. (2018). *Online Shoppers Purchasing Intention Dataset* [Data set]. UCI Machine Learning Repository. https://doi.org/10.24432/C5F88Q
