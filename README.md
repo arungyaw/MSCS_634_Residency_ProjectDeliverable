@@ -49,7 +49,7 @@ Each record represents an online shopping session. The dataset includes page vis
 - Apply cross-validation
 - Compare model performance
 
-**Status:** Not started
+**Status:** Completed
 
 ### Deliverable 3: Classification, Clustering, and Pattern Mining
 
@@ -88,12 +88,17 @@ Each record represents an online shopping session. The dataset includes page vis
 MSCS_634_Project/
 │
 ├── MSCS_634_ProjectDeliverable_1/
-│   ├── Project_Deliverable_1.ipynb
+│   ├── Deliverable_1.ipynb
 │   ├── online_shoppers_intention.csv
 │   ├── online_shoppers_cleaned.csv
 │   └── Deliverable1_README.md
 │
 ├── MSCS_634_ProjectDeliverable_2/
+│   ├── Deliverable_2.ipynb
+│   ├── online_shoppers_cleaned.csv
+│   └── Deliverable2_README.md
+│   └── .gitignore
+│
 ├── MSCS_634_ProjectDeliverable_3/
 ├── MSCS_634_ProjectDeliverable_4/
 └── README.md
