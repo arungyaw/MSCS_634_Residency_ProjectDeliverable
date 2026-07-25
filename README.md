@@ -54,14 +54,15 @@ Each record represents an online shopping session. The dataset includes page vis
 
 ### Deliverable 3: Classification, Clustering, and Pattern Mining
 
-- Build at least two classification models
-- Perform hyperparameter tuning
-- Evaluate models using accuracy, F1 score, confusion matrix, and ROC curve
-- Develop a clustering model
-- Apply association rule mining
-- Explain practical applications of the findings
+- Built Logistic Regression and Random Forest classifiers
+- Tuned Random Forest using GridSearchCV
+- Evaluated accuracy, F1 score, confusion matrices, and ROC-AUC
+- Applied K-Means clustering and PCA visualization
+- Identified three behavioral session groups
+- Applied Apriori association rule mining
+- Connected discovered patterns to practical applications
 
-**Status:** Not started
+**Status:** Completed
 
 ### Deliverable 4: Final Insights and Recommendations
 
