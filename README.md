@@ -71,6 +71,8 @@ Each record represents an online shopping session. The dataset includes page vis
 - Provide practical recommendations
 - Discuss data privacy, fairness, and possible bias
 - Prepare the final report and presentation
+- Here is the link to the Final Video Presentation: https://cumber-my.sharepoint.com/:v:/g/personal/agyawali33472_ucumberlands_edu/IQB_iRQAJ0xJS6PXZ0eLlaxQAf47dmp9HianbqrY_om6Dk0?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=RfTwer
+
 
 **Status:** Completed
 
@@ -166,7 +168,6 @@ MSCS_634_Project/
 │   ├── Deliverable4_README.md
 │   ├── MSCS_634_Final_Report.pptx
 │   ├── MSCS_634_Final_Project.docx
-│   ├── MSCS_634_Video_Presentation.mp4
 └── README.md
 
 ## Required Libraries
