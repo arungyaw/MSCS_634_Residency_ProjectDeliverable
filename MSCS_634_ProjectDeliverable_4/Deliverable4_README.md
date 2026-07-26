@@ -8,7 +8,16 @@
 - Kashif Ali Syed
 - Jiwon Jung
 - Hanuman Sai Chanukya Srinivas Chilamkuri
+  
+## Project Presentation
 
+The recorded presentation for the complete final project is available at the link below:
+
+**Presentation Video:**
+
+https://cumber-my.sharepoint.com/:v:/g/personal/agyawali33472_ucumberlands_edu/IQB_iRQAJ0xJS6PXZ0eLlaxQAf47dmp9HianbqrY_om6Dk0?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=RfTwer&referrer=Outlook.Desktop&referrerScenario=email-linkwithembed
+
+This presentation summarizes the complete project, including Deliverable 1 (Data Preparation and Exploratory Data Analysis), Deliverable 2 (Feature Engineering and Regression Modeling), Deliverable 3 (Classification, Clustering, and Association Rule Mining), and Deliverable 4 (Final Analysis, Recommendations, Ethical Considerations, and Future Work).
 ## Project Overview
 
 Deliverable 4 consolidates the complete data-mining workflow developed in Deliverables 1, 2, and 3. The project uses the **Online Shoppers Purchasing Intention Dataset** to examine online shopping behavior, predict engagement and purchasing outcomes, identify behavioral session groups, and discover purchase-related patterns.
